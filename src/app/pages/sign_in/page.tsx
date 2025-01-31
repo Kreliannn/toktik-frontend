@@ -1,7 +1,7 @@
 "use client"
 import { TextField, Button } from "@mui/material"
 import { useState } from "react"
-import axios from "axios"
+import axios from "@/app/hooks/api"
 import { useMutation } from "@tanstack/react-query"
 import { signInInterface } from "@/app/interface/account"
 
@@ -16,9 +16,9 @@ export default function SignIn()
     const formSetter = (field: string, value: string) => setForm({...form, [field] : value})
 
     let mutation = useMutation({
-        mutationFn : (data: signInInterface) => axios.post("http://localhost:4000/sign_in", data, { withCredentials : true }),
+        mutationFn : (data: signInInterface) => axios.post("/sign_in", data),
         onSuccess : (response) => alert(response.data),
-        onError : (err) => alert(err.message)
+        onError : (err) => alert("user not found")
     })
     
     return(
