@@ -19,6 +19,7 @@
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-responsive-carousel": "^3.2.23",
     "sweetalert2": "^11.15.10"
   },
   "devDependencies": {
