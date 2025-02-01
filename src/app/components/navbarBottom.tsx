@@ -11,7 +11,7 @@ const navItems = [
 
 export function NavbarBottom() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-black text-white">
+    <nav className="fixed bottom-0 left-0 right-0 bg-black text-white block md:hidden">
       <ul className="flex justify-around items-center h-16">
         {navItems.map((item, index) => (
           <li key={index} className="flex flex-col items-center">
