@@ -4,6 +4,8 @@ import { useState } from "react"
 import axios from "@/app/hooks/api"
 import { useMutation } from "@tanstack/react-query"
 import { signInInterface } from "@/app/interface/account"
+import useUserStore from "@/app/store/userStore"
+import { useRouter } from "next/navigation"
 
 
 export default function SignIn()
@@ -13,13 +15,22 @@ export default function SignIn()
         password : ""
     }) 
 
+    const setUser = useUserStore((state) => state.setUser)
+
+    const router = useRouter()
+
     const formSetter = (field: string, value: string) => setForm({...form, [field] : value})
 
     let mutation = useMutation({
         mutationFn : (data: signInInterface) => axios.post("/sign_in", data),
-        onSuccess : (response) => alert(response.data),
+        onSuccess : (response) => {
+            setUser(response.data)
+            router.push("/pages/fyp")
+        },
         onError : (err) => alert("user not found")
     })
+
+
     
     return(
         <div className="flex justify-center  place-items-center w-full h-dvh">

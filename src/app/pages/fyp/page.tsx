@@ -1,12 +1,16 @@
+"use client"
 import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-
+import useUserStore from "@/app/store/userStore";
 
 
 export default function Fyp()
 {
     
+    const user = useUserStore((state) => state.user)
+
+    console.log(user)
 
     return (
     <div>
