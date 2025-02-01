@@ -3,7 +3,7 @@ import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import useUserStore from "@/app/store/userStore";
-import { NavbarBottom } from "@/app/components/navbarBottom";
+
 
 export default function Fyp()
 {
@@ -33,8 +33,6 @@ export default function Fyp()
                   
                  </div>
          </Carousel>
-
-         <NavbarBottom />
     </div>
     )
 }
