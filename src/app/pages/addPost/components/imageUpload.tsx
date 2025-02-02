@@ -24,6 +24,10 @@ export default function ImageUpload()
 {
     const [file, setFile] = useState<File |  null>(null)
 
+    const submit = () => {
+        console.log(file)
+    }
+
     return(
         <div className="w-full  drop-shadow-lg h-full flex flex-col items-center justify-center">
        
@@ -55,6 +59,7 @@ export default function ImageUpload()
             <Button
                 className='w-full  drop-shadow-lg m-auto mt-2  rounded text-2xl font-bold'
                 variant="contained"
+                onClick={submit}
             >
                 Submit
             </Button>
