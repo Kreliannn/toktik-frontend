@@ -18,7 +18,7 @@ export default function ImageUpload()
     const [caption, setCaption] = useState("")
 
     const mutation = useMutation({
-        mutationFn : (data: imagePost) => axios.post("/uploadImage", data),
+        mutationFn : (data: imagePost) => axios.post("/post/upload/image", data),
         onSuccess : (response) => alert(response.data),
         onError : (err: Error) => alert(err.response.data.msg)
     })
