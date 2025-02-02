@@ -3,50 +3,60 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CheckIcon from '@mui/icons-material/Check';
 import { TextField } from "@mui/material"
 import {Button} from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { VisuallyHiddenInput } from '@/app/hooks/muiUploadButton';
 import { useState } from 'react';
-
-
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-  });
+import useUpload from '@/app/hooks/upload';
+import axios from '@/app/hooks/api';
+import { useMutation } from '@tanstack/react-query';
+import { imagePost } from '@/app/interface/post';
+import { Error } from '@/app/interface/onError';
 
 
 export default function ImageUpload()
 {
-    const [file, setFile] = useState<File |  null>(null)
+    const [file, setFile] = useState<File>({name: ""} as File)
+    const [caption, setCaption] = useState("")
 
-    const submit = () => {
-        console.log(file)
+    const mutation = useMutation({
+        mutationFn : (data: imagePost) => axios.post("/uploadImage", data),
+        onSuccess : (response) => alert(response.data),
+        onError : (err: Error) => alert(err.response.data.msg)
+    })
+
+    const submit = async () => {
+
+       if(file.name == "") return alert("file upload is empty")
+        
+       const upload = await useUpload(file, "image")
+
+       if(upload == "file type is not valid") return alert(upload)
+       
+        mutation.mutate({
+            imageUrl : upload,
+            caption : caption
+        })
+
     }
 
     return(
         <div className="w-full  drop-shadow-lg h-full flex flex-col items-center justify-center">
        
-            <TextField variant="outlined" label="caption" className="w-full m-auto bg-white  rounded"/>
+            <TextField variant="outlined" label="caption" className="w-full m-auto bg-white  rounded" value={caption} onChange={(e) => setCaption(e.target.value)} />
 
             <Button
                 className="w-full  drop-shadow-lg m-auto h-40 mt-2 rounded text-xl md:text-4xl font-bold"
                 component="label"
                 variant="contained"
                 tabIndex={-1}
-                color={(file) ? "success" : "primary"}
-                startIcon={ (file) ? <CheckIcon style={{ fontSize: 40 }} /> : <CloudUploadIcon style={{ fontSize: 40 }}  />}
+                color={(file.name) ? "success" : "primary"}
+                startIcon={ (file.name) ? <CheckIcon style={{ fontSize: 40 }} /> : <CloudUploadIcon style={{ fontSize: 40 }}  />}
                 >
                 Upload Image
                 <VisuallyHiddenInput
                     type="file"
                     accept="image/*"
                     onChange={(event) => {
-                        const file = event.target.files?.[0]; // Use optional chaining
+                        const file = event.target.files?.[0];
                         if (file) {
                         setFile(file);
                         } else {

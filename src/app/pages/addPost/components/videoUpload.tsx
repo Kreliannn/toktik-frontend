@@ -3,21 +3,9 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CheckIcon from '@mui/icons-material/Check';
 import { TextField } from "@mui/material"
 import {Button} from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { VisuallyHiddenInput } from '@/app/hooks/muiUploadButton';
 import { useState } from 'react';
 
-
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-  });
 
 
 export default function VideoUpload()

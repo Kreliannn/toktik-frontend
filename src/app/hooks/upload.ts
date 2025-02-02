@@ -1,9 +1,9 @@
 import axios from "axios"
 import useCheckFileType from "./checkFileType";
 
-const useUpload = async (file: File, type: string): Promise<string> => {
-
-    if(!useCheckFileType(file.name, type)) return "file type is not valid";
+export default async function useUpload (file: File, type: string): Promise<string>
+{
+    if(!useCheckFileType(file.type, type)) return "file type is not valid";
 
     let formData = new FormData()
     formData.append("file", file)
