@@ -3,7 +3,9 @@ import { NavbarSide } from "@/app/components/navbarSide"
 import { NavbarBottom } from "@/app/components/navbarBottom"
 import { Description } from "@mui/icons-material"
 import { useState } from "react"
-
+import ImageUpload from "./components/imageUpload"
+import VideoUpload from "./components/videoUpload"
+import TextUpload from "./components/textUpload"
 
 const choices = [
     { type : "image", Description : "bla bla lba", title : "Image upload"},
@@ -13,7 +15,7 @@ const choices = [
 
 export default function AddPost()
 {
-    
+    const [type, setType] = useState("")
 
 
     return(
@@ -24,13 +26,13 @@ export default function AddPost()
              </div>
              <div className="bg-stone-900 col-span-12 md:col-span-9 ">
                 <br />
-                <div className="w-full h-80 gap-5  flex flex-col justify-center  place-items-center  md:flex-row     md:h-48">
+                <div className="w-5/6 m-auto h-80 gap-5  flex flex-col justify-center  place-items-center  md:flex-row     md:h-48">
                     
                     {
                         choices.map((item) => {
                             return(
-                                <button key={item.type} className="h-32 w-80  rounded drop-shadow-lg bg-black text-white hover:bg-gray-900 ">
-                                    <h1 className="text-center text-2xl text-white font-bold"> {item.title} </h1>
+                                <button key={item.type} className={`h-32 w-80  rounded drop-shadow-lg  hover:bg-black hover:text-white ${(type == item.type)?"bg-black text-white" : "bg-white text-black" } `} onClick={()=> setType(item.type)}>
+                                    <h1 className="text-center text-2xl  font-bold"> {item.title} </h1>
                                     <p className="text-center text-gray-400 text-xs mt-2"> {item.Description} </p>
                                 </button>
                             )
@@ -40,7 +42,13 @@ export default function AddPost()
 
                 </div>
 
-                <h1> {type}</h1>
+              
+
+                <div className="m-auto h-80  w-5/6 px-5 rounded bg-stone-100   mt-5">
+                    {(type == "image") && <ImageUpload />}
+                    {(type == "video") && <VideoUpload />}
+                    {(type == "text") && <TextUpload />}            
+                </div>
 
              </div>
 
