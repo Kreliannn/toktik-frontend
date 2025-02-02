@@ -1,11 +1,10 @@
 "use client"
 import Image from "next/image";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 import useUserStore from "@/app/store/userStore";
 import { NavbarBottom } from "@/app/components/navbarBottom";
 import { NavbarSide } from "@/app/components/navbarSide";
 import { SideIcons } from "@/app/components/sideIcons";
+import FypCarousel from "./components/fyp";
 
 export default function Fyp()
 {
@@ -15,42 +14,21 @@ export default function Fyp()
     console.log(user)
 
     return (
-    <div>
-      <div className="w-full h-100dvh bg-stone-900 flex justify-center place-items-center">
-        <Carousel axis="vertical" infiniteLoop  showIndicators={false} showStatus={false} className="md:w-80 h-dvh"> 
-                 <div>
-                 <SideIcons />
-                     <div className="h-dvh w-full bg-black flex place-items-center">
-                       <img src="/profile_picture.webp" alt="" />
-                     </div>
-                     
-  
-                 </div>
-                 <div>
-                     <div className="h-dvh w-full bg-black flex place-items-center">
-                       <img src="/caraass.jpg" alt="" />
-                     </div>
-                     <SideIcons />
-                 </div>
-                 <div>
-                    <SideIcons />
-                    <div className="h-dvh w-full bg-black flex place-items-center">
-                       <img src="/pokemon_landingpage_bg.jpg" alt="" />
-                     </div>
-                  
-                 </div>
+    <div className="h-dvh w-full grid grid-cols-12  ">
 
-            
-
-         </Carousel>
-
-
+      <div className="bg-gray-200 p-4 col-span-0 hidden md:col-span-3  md:block" >
+         <NavbarSide />
       </div>
 
-      
+      <div className="bg-gray-900 col-span-12 md:col-span-9 ">
         
-      <NavbarBottom />
-      <NavbarSide />
+        <div className="w-full h-dvh bg-stone-900 flex justify-center place-items-center">
+          <FypCarousel />
+        </div>
+              
+        <NavbarBottom />
+      </div>
+    
     </div>
-    )
+  )
 }

@@ -3,9 +3,9 @@ import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import useUserStore from "@/app/store/userStore";
+import { SideIcons } from "@/app/components/sideIcons";
 
-
-export default function Fyp()
+export default function FypCarousel()
 {
     
     const user = useUserStore((state) => state.user)
@@ -14,24 +14,31 @@ export default function Fyp()
 
     return (
     <div>
-        <Carousel axis="vertical" infiniteLoop  showIndicators={false} showStatus={false}> 
+         <Carousel axis="vertical" infiniteLoop  showIndicators={false} showStatus={false} className="md:w-80 h-dvh"> 
                  <div>
+                 <SideIcons />
                      <div className="h-dvh w-full bg-black flex place-items-center">
                        <img src="/profile_picture.webp" alt="" />
                      </div>
+                     
+  
                  </div>
                  <div>
                      <div className="h-dvh w-full bg-black flex place-items-center">
                        <img src="/caraass.jpg" alt="" />
                      </div>
-               
+                     <SideIcons />
                  </div>
                  <div>
+                    <SideIcons />
                     <div className="h-dvh w-full bg-black flex place-items-center">
                        <img src="/pokemon_landingpage_bg.jpg" alt="" />
                      </div>
                   
                  </div>
+
+            
+
          </Carousel>
     </div>
     )
