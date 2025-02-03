@@ -3,16 +3,18 @@ import useCheckFileType from "./checkFileType";
 
 export default async function useUpload (file: File, type: string): Promise<string>
 {
-    if(!useCheckFileType(file.type, type)) return "file type is not valid";
+    if(!useCheckFileType(file.type, type)) return "file type error";
+
+    if(file.size >= 53226865) return "file size error"; 
 
     let formData = new FormData()
     formData.append("file", file)
     formData.append("upload_preset", "example")
-    formData.append("api_key", "994682957379785")
+    formData.append("api_key", "994682957379785") 
     
     let result = await axios.post(`https://api.cloudinary.com/v1_1/dljxtf9dg/${type}/upload`, formData)
 
     return result.data.secure_url;
-
+    
 }
 

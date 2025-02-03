@@ -8,7 +8,7 @@ import { useState } from 'react';
 import useUpload from '@/app/hooks/upload';
 import axios from '@/app/hooks/api';
 import { useMutation } from '@tanstack/react-query';
-import { imagePost } from '@/app/interface/post';
+import { postInterface } from '@/app/interface/post';
 import { Error } from '@/app/interface/onError';
 
 
@@ -18,7 +18,7 @@ export default function ImageUpload()
     const [caption, setCaption] = useState("")
 
     const mutation = useMutation({
-        mutationFn : (data: imagePost) => axios.post("/post/upload/image", data),
+        mutationFn : (data: postInterface) => axios.post("/post/upload", data),
         onSuccess : (response) =>{
             setCaption("")
             setFile({name: ""} as File)
@@ -29,15 +29,16 @@ export default function ImageUpload()
 
     const submit = async () => {
 
-       if(file.name == "") return alert("file upload is empty")
+       if(file.name == "") return alert("select image first")
         
-       const upload = await useUpload(file, "image")
+       const value = await useUpload(file, "image")
 
-       if(upload == "file type is not valid") return alert(upload)
+       if(value == "file type error") return alert("file type is not valid")
        
         mutation.mutate({
-            imageUrl : upload,
-            caption : caption
+            value : value,
+            caption : caption,
+            type: "image"
         })
 
     }

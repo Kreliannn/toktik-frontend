@@ -1,10 +1,7 @@
 
-export interface imagePost{
-    imageUrl : string,
-    caption : string
-}
 
-export interface textPost{
-    postBody : string,
-    caption : string
+export interface postInterface {
+    value : string,
+    caption : string,
+    type : string
 }

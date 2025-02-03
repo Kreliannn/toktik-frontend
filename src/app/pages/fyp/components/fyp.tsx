@@ -8,7 +8,7 @@ import axios from "@/app/hooks/api";
 import { useQuery } from "@tanstack/react-query";
 import PostImage from "./postImgType";
 import PostText from "./postTextType";
-
+import PostVideo from "./postVidType";
 
 
 export default function FypCarousel()
@@ -22,7 +22,8 @@ export default function FypCarousel()
     })
 
     const allPost: [] = data?.data
-    
+
+    //{post.type === "image" ? <PostImage img={post.imgUrl} /> : <PostVideo vid={post.vidUrl} />}
 
     return (
     <div>
@@ -33,7 +34,9 @@ export default function FypCarousel()
                   <div key={index}> 
                     <SideIcons />
                      <div className="h-dvh w-full bg-black flex place-items-center">
-                        {post.type === "image" ? <PostImage img={post.imgUrl} /> : <PostText postBody={post.postBody} />}
+                        {(post.type == "image") ? <PostImage img={post.imgUrl} /> : ""}
+                        {(post.type == "video") ? <PostVideo vid={post.vidUrl} /> : ""}
+                        {(post.type == "text") ? <PostText postBody={post.postBody} /> : ""}
                      </div>
                   </div>
                 )
