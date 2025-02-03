@@ -31,7 +31,7 @@ export default function AddPost()
                     {
                         choices.map((item) => {
                             return(
-                                <button key={item.type} className={`h-32 w-80  rounded drop-shadow-lg  hover:bg-black hover:text-white ${(type == item.type)?"bg-black text-white" : "bg-white text-black" } `} onClick={()=> setType(item.type)}>
+                                <button key={item.type} className={`h-32 w-80 rounded drop-shadow-lg hover:bg-black hover:text-white transition duration-500 ease-in-out ${(type == item.type)?"bg-black text-white" : "bg-white text-black" }`} onClick={()=> setType(item.type)}>
                                     <h1 className="text-center text-2xl  font-bold"> {item.title} </h1>
                                     <p className="text-center text-gray-400 text-xs mt-2"> {item.Description} </p>
                                 </button>

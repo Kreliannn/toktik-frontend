@@ -19,8 +19,12 @@ export default function ImageUpload()
 
     const mutation = useMutation({
         mutationFn : (data: imagePost) => axios.post("/post/upload/image", data),
-        onSuccess : (response) => alert(response.data),
-        onError : (err: Error) => alert(err.response.data.msg)
+        onSuccess : (response) =>{
+            setCaption("")
+            setFile({name: ""} as File)
+            alert(response.data)
+        },
+        onError : (err: Error) => alert(err.response.data)
     })
 
     const submit = async () => {

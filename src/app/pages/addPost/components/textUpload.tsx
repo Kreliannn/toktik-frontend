@@ -5,42 +5,49 @@ import { TextField } from "@mui/material"
 import {Button} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
-
-
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-  });
-
+import { VisuallyHiddenInput } from '@/app/hooks/muiUploadButton';
+import axios from '@/app/hooks/api';
+import { useMutation } from '@tanstack/react-query';
+import { Error } from '@/app/interface/onError';
+import { textPost } from '@/app/interface/post';
 
 export default function TextUpload()
 {
-    const [file, setFile] = useState<File |  null>(null)
+    const [caption, setCaption] = useState("")
+    const [postBody, setPostBody] = useState("")
+
+    const mutation = useMutation({
+        mutationFn : (data: textPost) => axios.post("/post/upload/text", data),
+        onSuccess : (response) => {
+            setCaption("")
+            setPostBody("")
+            alert(response.data)
+        },
+        onError : (err: Error) => alert(err.response.data)
+    })
+
+    const submit = () => mutation.mutate({caption : caption, postBody : postBody})
 
     return(
         <div className="w-full h-full flex flex-col items-center justify-center">
           
-            <TextField variant="outlined" label="caption" className="w-full  drop-shadow-lg m-auto bg-white  rounded"/>
+            <TextField variant="outlined" label="caption" className="w-full  drop-shadow-lg m-auto bg-white  rounded" value={caption} onChange={(e) => setCaption(e.target.value)}   />
 
             <TextField
                 className='w-full  drop-shadow-lg m-auto bg-white  rounded"'
                 label="Message"
                 variant="outlined"
                 multiline
-                rows={4} // Controls height
+                rows={4} 
                 fullWidth
+                value={postBody} 
+                onChange={(e) => setPostBody(e.target.value)} 
             />
 
             <Button
                 className='w-full  drop-shadow-lg m-auto mt-2  rounded text-2xl font-bold'
                 variant="contained"
+                onClick={submit}
             >
                 Submit
             </Button>

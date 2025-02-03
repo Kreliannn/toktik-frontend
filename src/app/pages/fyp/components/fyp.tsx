@@ -6,6 +6,10 @@ import useUserStore from "@/app/store/userStore";
 import { SideIcons } from "@/app/components/sideIcons";
 import axios from "@/app/hooks/api";
 import { useQuery } from "@tanstack/react-query";
+import PostImage from "./postImgType";
+import PostText from "./postTextType";
+
+
 
 export default function FypCarousel()
 {
@@ -29,7 +33,7 @@ export default function FypCarousel()
                   <div key={index}> 
                     <SideIcons />
                      <div className="h-dvh w-full bg-black flex place-items-center">
-                       <img src={post.imgUrl} alt="not found" />
+                        {post.type === "image" ? <PostImage img={post.imgUrl} /> : <PostText postBody={post.postBody} />}
                      </div>
                   </div>
                 )

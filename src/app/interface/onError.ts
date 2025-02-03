@@ -1,7 +1,5 @@
 export interface Error {
     response : {
-        data : {
-            msg : string
-        }
+        data : string
     }
 }
