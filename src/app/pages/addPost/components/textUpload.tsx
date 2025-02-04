@@ -9,7 +9,7 @@ import { VisuallyHiddenInput } from '@/app/hooks/muiUploadButton';
 import axios from '@/app/hooks/api';
 import { useMutation } from '@tanstack/react-query';
 import { Error } from '@/app/interface/onError';
-import { postInterface } from '@/app/interface/post';
+import { addPostInterface } from '@/app/interface/post';
 
 export default function TextUpload()
 {
@@ -17,7 +17,7 @@ export default function TextUpload()
     const [postBody, setPostBody] = useState("")
 
     const mutation = useMutation({
-        mutationFn : (data: postInterface) => axios.post("/post/upload", data),
+        mutationFn : (data: addPostInterface) => axios.post("/post/upload", data),
         onSuccess : (response) => {
             setCaption("")
             setPostBody("")

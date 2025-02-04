@@ -8,7 +8,7 @@ import { useState } from 'react';
 import useUpload from '@/app/hooks/upload';
 import axios from '@/app/hooks/api';
 import { useMutation } from '@tanstack/react-query';
-import { postInterface } from '@/app/interface/post';
+import { addPostInterface } from '@/app/interface/post';
 import { Error } from '@/app/interface/onError';
 
 
@@ -18,7 +18,7 @@ export default function ImageUpload()
     const [caption, setCaption] = useState("")
 
     const mutation = useMutation({
-        mutationFn : (data: postInterface) => axios.post("/post/upload", data),
+        mutationFn : (data: addPostInterface) => axios.post("/post/upload", data),
         onSuccess : (response) =>{
             setCaption("")
             setFile({name: ""} as File)

@@ -7,7 +7,7 @@ import { VisuallyHiddenInput } from '@/app/hooks/muiUploadButton';
 import { useState } from 'react';
 import axios from '@/app/hooks/api';
 import { useMutation } from '@tanstack/react-query';
-import { postInterface } from '@/app/interface/post';
+import { addPostInterface } from '@/app/interface/post';
 import { Error } from '@/app/interface/onError';
 import useUpload from '@/app/hooks/upload';
 
@@ -17,7 +17,7 @@ export default function VideoUpload()
     const [caption, setCaption] = useState("")
 
     const mutation = useMutation({
-        mutationFn : (data: postInterface) => axios.post("/post/upload", data),
+        mutationFn : (data: addPostInterface) => axios.post("/post/upload", data),
         onSuccess : (response) =>{
             setCaption("")
             setFile({name: ""} as File)
