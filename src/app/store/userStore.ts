@@ -13,6 +13,7 @@ interface user {
     setUser : (data: userInterface) => void,
     getUserFullname : () => string,
     getUserProfile : () => string,
+    getUserId : () => string,
     userLogOut : () => void
 }
 
@@ -23,6 +24,7 @@ const useUserStore = create<user>()(
         setUser : (data) => set({ user : data}),
         getUserFullname : () => get().user.fullname,
         getUserProfile : () => get().user.profile,
+        getUserId : () => get().user._id,
         userLogOut : () => {
             sessionStorage.removeItem('user-storage')
             set({user : emptyObj})

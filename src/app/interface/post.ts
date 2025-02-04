@@ -1,4 +1,26 @@
 
+export interface commentInterface {
+    message : string,
+    sender : {},
+    date : string
+}
+
+export interface postInterface {
+    _id : string,
+    user : {
+        fullname : string,
+        profile : string
+    },
+    type : string,
+    caption : string,
+    imgUrl : string,
+    vidUrl : string,
+    postBody : string,
+    like : string[],
+    favorite : string[],
+    comment : commentInterface[],
+    date : string
+}
 
 export interface addPostInterface {
     value : string,
