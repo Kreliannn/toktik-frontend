@@ -40,8 +40,9 @@ export function SideIcons({postId ,like, favorite, comment }: {postId : string, 
 
         <button
             className={`bg-gray-800 h-12  w-12 flex flex-col justify-center items-center text-white rounded-full p-3 hover:bg-gray-700 transition-colors duration-200 bg-opacity-60 md:h-10 md:w-10`}
+            onClick={likeSetter}
             >
-            <Favorite className={`${(likeIcon) ? "text-red-500" : ""} transition duration-500 text-2xl`} onClick={likeSetter} />
+            <Favorite className={`${(likeIcon) ? "text-red-500" : ""} transition duration-500 text-2xl`}  />
             <p className={`text-xs`}>
             {likeCount } 
             </p>
