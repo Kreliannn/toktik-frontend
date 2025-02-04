@@ -4,7 +4,8 @@ import { userInterface } from '../interface/user'
 
 const emptyObj = {
     fullname : "",
-    profile : ""
+    profile : "",
+    _id : ""
 }
 
 interface user {

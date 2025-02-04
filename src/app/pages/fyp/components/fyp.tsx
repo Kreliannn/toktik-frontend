@@ -3,7 +3,7 @@ import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import useUserStore from "@/app/store/userStore";
-import { SideIcons } from "@/app/components/sideIcons";
+import { SideIcons } from "./sideIcons";
 import axios from "@/app/hooks/api";
 import { useQuery } from "@tanstack/react-query";
 import PostImage from "./postImgType";
