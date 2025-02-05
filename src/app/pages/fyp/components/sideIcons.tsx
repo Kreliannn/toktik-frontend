@@ -6,7 +6,7 @@ import axios from "@/app/hooks/api"
 import { useMutation } from "@tanstack/react-query"
 import useUserStore from "@/app/store/userStore"
 
-export function SideIcons({postId ,like, favorite, comment, user }: {postId : string, like: string[], favorite: string[], comment: commentInterface[], user : {_id : string, profile : string}}) {
+export function SideIcons({postId ,like, favorite, comment, user, show }: {postId : string, like: string[], favorite: string[], comment: commentInterface[], user : {_id : string, profile : string}, show: React.Dispatch<React.SetStateAction<boolean>>}) {
 
   const userId = useUserStore((state) => state.getUserId)
 
@@ -57,6 +57,7 @@ export function SideIcons({postId ,like, favorite, comment, user }: {postId : st
 
         <button
             className={`bg-gray-800 h-12  w-12 flex flex-col justify-center items-center text-white rounded-full p-3 hover:bg-gray-700 transition-colors duration-200 bg-opacity-60 md:h-10 md:w-10`}
+            onClick={() => show(true)}
             >
             <ChatBubble className={`transition duration-500 text-2xl`}  />
             <p className={`text-xs`}>

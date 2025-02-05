@@ -13,7 +13,7 @@ const navItems = [
 export function NavbarBottom() {
   const router = useRouter()
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-black text-white block md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 bg-black text-white block md:hidden z-98">
       <ul className="flex justify-around items-center h-16">
         {navItems.map((item, index) => (
           <li key={index} className="flex flex-col items-center">
