@@ -6,7 +6,7 @@ import axios from "@/app/hooks/api"
 import { useMutation } from "@tanstack/react-query"
 import useUserStore from "@/app/store/userStore"
 
-export function SideIcons({postId ,like, favorite, comment }: {postId : string, like: string[], favorite: string[], comment: commentInterface[]}) {
+export function SideIcons({postId ,like, favorite, comment, user }: {postId : string, like: string[], favorite: string[], comment: commentInterface[], user : {_id : string, profile : string}}) {
 
   const userId = useUserStore((state) => state.getUserId)
 
@@ -42,7 +42,7 @@ export function SideIcons({postId ,like, favorite, comment }: {postId : string, 
         <button
           className="bg-gray-800 h-14 w-14 flex justify-center items-center text-white rounded-full p-3 ring ring-stone-700 hover:bg-gray-700 transition-colors duration-200 mb-3 md:h-10 md:w-10"
           aria-label="profile"
-          style={{ backgroundImage: `url(${"222"})`, backgroundSize: 'cover' }}
+          style={{ backgroundImage: `url(${user.profile})`, backgroundSize: 'cover' }}
         ></button>
 
         <button

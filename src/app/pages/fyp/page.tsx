@@ -3,7 +3,6 @@ import Image from "next/image";
 import useUserStore from "@/app/store/userStore";
 import { NavbarBottom } from "@/app/components/navbarBottom";
 import { NavbarSide } from "@/app/components/navbarSide";
-import { SideIcons } from "@/app/components/sideIcons";
 import FypCarousel from "./components/fyp";
 
 export default function Fyp()

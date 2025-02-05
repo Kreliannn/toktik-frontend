@@ -27,12 +27,12 @@ export default function FypCarousel()
 
     return (
     <div>
-         <Carousel axis="vertical" infiniteLoop  showIndicators={false} showStatus={false} className="md:w-80 h-dvh"> 
+         <Carousel axis="vertical" infiniteLoop  showIndicators={false} showStatus={false} className="md:w-80 h-dvh w-full "> 
             {
               allPost?.map((post: postInterface, index) => {
                 return (
-                  <div key={index}> 
-                    <SideIcons postId={post._id} like={post.like} favorite={post.favorite} comment={post.comment} />
+                  <div key={index} className="w-screen md:w-full"> 
+                    <SideIcons postId={post._id} like={post.like} favorite={post.favorite} comment={post.comment} user={post.user}/>
                      <div className="h-dvh w-full bg-black flex place-items-center">
                         {(post.type == "image") ? <PostImage img={post.imgUrl} /> : ""}
                         {(post.type == "video") ? <PostVideo vid={post.vidUrl} /> : ""}

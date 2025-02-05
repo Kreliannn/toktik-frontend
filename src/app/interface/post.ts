@@ -8,6 +8,7 @@ export interface commentInterface {
 export interface postInterface {
     _id : string,
     user : {
+        _id : string,
         fullname : string,
         profile : string
     },
