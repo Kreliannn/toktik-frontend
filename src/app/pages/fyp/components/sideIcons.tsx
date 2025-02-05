@@ -15,19 +15,26 @@ export function SideIcons({postId ,like, favorite, comment }: {postId : string, 
   const [favoriteIcon, setfavoriteIcon] = useState<boolean>(favorite.includes(userId()))
   const [favoriteCount, setFavoriteCount] = useState<number>(favorite.length)
 
-  const mutation = useMutation({
+  const mutationLike = useMutation({
     mutationFn : (data: { postId : string}) => axios.post("/post/like", data)
+  })
+
+  const mutationFavorite = useMutation({
+    mutationFn : (data: { postId : string}) => axios.post("/post/favorite", data)
   })
 
   const likeSetter = () => {
     setlikeIcon(!likeIcon)
     const likeState = likeIcon
     setLikeCount((state) => (likeState)? state -= 1 : state += 1)
-    mutation.mutate({ postId : postId})
+    mutationLike.mutate({ postId : postId})
   }
 
   const favoriteSetter = () => {
     setfavoriteIcon(!favoriteIcon)
+    const favoriteState = favoriteIcon
+    setFavoriteCount((state) => (favoriteState)? state -= 1 : state += 1)
+    mutationFavorite.mutate({ postId : postId})
   }
 
   return (
@@ -60,8 +67,9 @@ export function SideIcons({postId ,like, favorite, comment }: {postId : string, 
 
         <button
             className={`bg-gray-800 h-12  w-12 flex flex-col justify-center items-center text-white rounded-full p-3 hover:bg-gray-700 transition-colors duration-200 bg-opacity-60 md:h-10 md:w-10`}
+            onClick={favoriteSetter}
             >
-            <Bookmark className={`${(favoriteIcon) ? "text-yellow-500" : ""} transition duration-500 text-2xl`} onClick={favoriteSetter} />
+            <Bookmark className={`${(favoriteIcon) ? "text-yellow-500" : ""} transition duration-500 text-2xl`}  />
             <p className={`text-xs`}>
             {favoriteCount} 
             </p>
