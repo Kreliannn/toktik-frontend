@@ -1,5 +1,5 @@
 
 export default function PostVideo({ vid }: { vid : string})
 {
-    return(<video src={vid}   />)
+    return(<video src={vid} autoPlay loop  muted/>)
 }

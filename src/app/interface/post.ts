@@ -1,7 +1,10 @@
 
 export interface commentInterface {
     message : string,
-    sender : {},
+    sender : {
+        fullname : string,
+        profile : string
+    },
     date : string
 }
 

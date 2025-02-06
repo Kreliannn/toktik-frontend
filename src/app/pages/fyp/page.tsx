@@ -10,7 +10,7 @@ export default function Fyp()
     
     const user = useUserStore((state) => state.user)
 
-    console.log(user)
+    
 
     return (
     <div className="h-dvh w-full grid grid-cols-12  ">

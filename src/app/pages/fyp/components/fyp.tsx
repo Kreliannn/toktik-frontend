@@ -27,10 +27,11 @@ export default function FypCarousel()
 
     const allPost: [] = data?.data
 
+  
 
     return (
     <div>
-         <Carousel axis="vertical" infiniteLoop  showIndicators={false} showStatus={false} className="md:w-80 h-dvh w-full "> 
+         <Carousel axis="vertical" infiniteLoop showThumbs={false} showIndicators={false} showStatus={false} className="md:w-80 h-dvh w-full "> 
             {
               allPost?.map((post: postInterface, index) => {
                 return (
@@ -41,7 +42,7 @@ export default function FypCarousel()
                         {(post.type == "video") ? <PostVideo vid={post.vidUrl} /> : ""}
                         {(post.type == "text") ? <PostText postBody={post.postBody} /> : ""}
                      </div>
-                    {(showcomment) ? <CommentSection hide={setShowcomment} /> : ""}
+                    {(showcomment) ? <CommentSection postId={post._id} comments={post.comment} hide={setShowcomment} /> : ""}
                   </div>
                 )
               })
