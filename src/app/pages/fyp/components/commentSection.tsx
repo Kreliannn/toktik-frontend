@@ -1,4 +1,4 @@
-
+import { Button } from "@mui/material"
 
 
 
@@ -36,12 +36,11 @@ export default function CommentSection({ hide }: { hide : React.Dispatch<React.S
                     </div>  
                 </div>
 
-
-
             </div>
 
-            <div className="w-11/12 m-auto h-14 bg-red-500 border ">
-
+            <div className="w-11/12 m-auto h-14 border flex gap-2">
+                <input type="text"  className="input drop-shadow-lg w-5/6"/>
+                <Button variant="contained" className="drop-shadow-lg"> send </Button>
             </div>
         </div>
     )
