@@ -16,7 +16,7 @@ import { useState } from "react";
 
 export default function FypCarousel()
 {
-    const [ showcomment, setShowcomment ] = useState(true)
+    const [ showcomment, setShowcomment ] = useState(false)
 
     const user = useUserStore((state) => state.user)
 
