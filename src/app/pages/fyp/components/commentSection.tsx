@@ -5,17 +5,30 @@ import axios from "@/app/hooks/api"
 import { useMutation } from "@tanstack/react-query"
 import { Error } from "@/app/interface/onError"
 import { commentInterface } from "@/app/interface/post"
+import { AxiosResponse } from "axios"
+import useUserStore from "@/app/store/userStore"
 
 export default function CommentSection({ postId , comments, hide }: {postId : string, comments : commentInterface[] , hide : React.Dispatch<React.SetStateAction<boolean>>})
 {
     const [comment, setComment] = useState("")
-    console.log(comments)
-    const allComments = comments
+    
+    const [allComments, setAllComments] = useState(comments)
+
+    const user = useUserStore((state) => state.user)
 
     const mutation = useMutation({
         mutationFn : (data : { postId : string, comment : string}) => axios.post("/post/comment", data),
-        onSuccess : (response) => {
-            console.log(response.data)
+        onSuccess : (response: AxiosResponse<{ message : string, date : string}>) => {
+            const { message, date } = response.data
+            const newComment = {
+                message : message,
+                sender : {
+                    fullname : user.fullname,
+                    profile : user.profile
+                },
+                date : date
+            }
+            setAllComments([...allComments, newComment])
         },
         onError : (err: Error) => {
             alert(err.response.data)
