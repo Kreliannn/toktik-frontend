@@ -1,17 +1,22 @@
 "use client"
 import { Home, Group, AddCircleOutline, Notifications, Person } from "@mui/icons-material"
 import { useRouter } from "next/navigation"
+import useUserStore from "../store/userStore"
 
-const navItems = [
-  { icon: Home, label: "For You", page : "/pages/fyp" },
-  { icon: Group, label: "Following", page : "/pages/" },
-  { icon: AddCircleOutline, label: "Add", page : "/pages/addPost" },
-  { icon: Notifications, label: "Inbox", page : "/pages/" },
-  { icon: Person, label: "Profile", page : "/pages/profile" },
-]
 
 export function NavbarBottom() {
   const router = useRouter()
+  const id = useUserStore((state) => state.getUserId)
+
+  const navItems = [
+    { icon: Home, label: "For You", page : "/pages/fyp" },
+    { icon: Group, label: "Following", page : "/pages/" },
+    { icon: AddCircleOutline, label: "Add", page : "/pages/addPost" },
+    { icon: Notifications, label: "Inbox", page : "/pages/" },
+    { icon: Person, label: "Profile", page : `/pages/profile/${id()}` },
+  ]
+
+
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-black text-white block md:hidden z-98">
       <ul className="flex justify-around items-center h-16">

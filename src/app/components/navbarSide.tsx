@@ -1,19 +1,24 @@
 "use client"
 import { Home, Group, AddCircleOutline, Notifications, Person } from "@mui/icons-material"
 import { useRouter } from "next/navigation"
+import useUserStore from "../store/userStore"
 
-const navItems = [
-  { icon: Home, label: "For You", page : "/pages/fyp" },
-  { icon: Group, label: "Following", page : "/pages/" },
-  { icon: AddCircleOutline, label: "Add", page : "/pages/addPost" },
-  { icon: Notifications, label: "Inbox", page : "/pages/" },
-  { icon: Person, label: "Profile", page : "/profile" },
-]
+
 
 
 
 export function NavbarSide() {
+  const id = useUserStore((state) => state.getUserId)
   const router = useRouter()
+
+  const navItems = [
+    { icon: Home, label: "For You", page : "/pages/fyp" },
+    { icon: Group, label: "Following", page : "/pages/" },
+    { icon: AddCircleOutline, label: "Add", page : "/pages/addPost" },
+    { icon: Notifications, label: "Inbox", page : "/pages/" },
+    { icon: Person, label: "Profile", page : `/pages/profile/${id()}` },
+  ]
+
   return (
     <nav className="fixed top-0 left-0 bottom-0 w-3/12 bg-black text-white flex flex-col items-start py-8 hidden md:block">
       <ul className="flex flex-col items-start space-y-6 w-full">
