@@ -53,7 +53,6 @@ export default function CommentSection({ postId , comments, hide }: {postId : st
 
             {
                 allComments?.map((comment, index) => {
-                    {console.log("rpintin g")}
                     return (
                         <div key={index} className=" roudned drop-shadow-lg  p-2  text-xs flex justify-start mb-3 ">
                             <div className="w-1/6 flex justify-center">

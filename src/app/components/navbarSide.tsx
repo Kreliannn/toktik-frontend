@@ -7,7 +7,7 @@ const navItems = [
   { icon: Group, label: "Following", page : "/pages/" },
   { icon: AddCircleOutline, label: "Add", page : "/pages/addPost" },
   { icon: Notifications, label: "Inbox", page : "/pages/" },
-  { icon: Person, label: "Profile", page : "/pages/" },
+  { icon: Person, label: "Profile", page : "/profile" },
 ]
 
 
