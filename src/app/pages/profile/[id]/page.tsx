@@ -71,7 +71,7 @@ export default function Profile() {
 
                         <br />
 
-                        <div className="bg-stone-900  w-full h-auto grid grid-cols-3 md:w-4/6">
+                        <div className="bg-stone-200  w-full h-auto grid grid-cols-3 md:w-4/6">
                         {
                             post?.map((post, index) => {
                                 return <ProfilePost post={post} key={index} index={index}/>

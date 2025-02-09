@@ -9,9 +9,9 @@ export default function ChangeProfileButton()
     const [file, setFile] = useState<File>({ name : "" } as File)
 
     return(
-        <div className='flex '>
+        <div className='flex  '>
             <Button
-                className="w-full  drop-shadow-lg  m-auto h-full mt-2 rounded  font-bold"
+                className="w-full  drop-shadow-lg  m-auto h-full mt-2 rounded  font-bold "
                 component="label"
                 variant="contained"
                 tabIndex={-1}

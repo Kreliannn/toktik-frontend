@@ -5,10 +5,13 @@ import { useState } from "react"
 import axios from "@/app/hooks/api"
 import { useMutation } from "@tanstack/react-query"
 import useUserStore from "@/app/store/userStore"
+import { useRouter } from "next/navigation"
 
 export function SideIcons({postId ,like, favorite, comment, user, show }: {postId : string, like: string[], favorite: string[], comment: commentInterface[], user : {_id : string, profile : string}, show: React.Dispatch<React.SetStateAction<boolean>>}) {
 
   const userId = useUserStore((state) => state.getUserId)
+
+  const router = useRouter()
 
   const [likeIcon, setlikeIcon] = useState<boolean>(like.includes(userId()))
   const [likeCount, setLikeCount] = useState<number>(like.length)
@@ -43,6 +46,7 @@ export function SideIcons({postId ,like, favorite, comment, user, show }: {postI
           className="bg-gray-800 h-14 w-14 flex justify-center items-center text-white rounded-full p-3 ring ring-stone-700 hover:bg-gray-700 transition-colors duration-200 mb-3 md:h-10 md:w-10"
           aria-label="profile"
           style={{ backgroundImage: `url(${user.profile})`, backgroundSize: 'cover' }}
+          onClick={() => router.push(`/pages/profile/${user._id}`)}
         ></button>
 
         <button

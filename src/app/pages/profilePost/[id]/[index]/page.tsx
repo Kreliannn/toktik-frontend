@@ -4,16 +4,17 @@ import useUserStore from "@/app/store/userStore";
 import { NavbarBottom } from "@/app/components/navbarComponents/navbarBottom";
 import { NavbarSide } from "@/app/components/navbarComponents/navbarSide";
 import FypCarousel from "@/app/components/postComponents/fyp";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 export default function Fyp()
 {
     const params = useParams()
     const {id, index} = params
+    const router = useRouter()
 
     const user = useUserStore((state) => state.user)
-
     
 
     return (
@@ -29,8 +30,8 @@ export default function Fyp()
         
         <div className="relative w-full h-dvh bg-stone-900 flex justify-center place-items-center">
           <div className="absolute top-1 left-0 w-full h-12 z-[100] flex justify-between items-center">
-            <span className="ml-4 text-white">krelian quimson posts</span>
-            <button className="button-white"><ArrowBackIcon /> back to profile </button>
+            <span className="ml-4 text-white text-xl"> View user posts </span>
+            <button className="button-white" onClick={router.back}><ArrowBackIcon /> back to profile </button>
           </div>
           <FypCarousel endPoint={`/post/${id}`} index={Number(index)}/>
         </div>
