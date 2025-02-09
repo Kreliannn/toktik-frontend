@@ -10,22 +10,36 @@ import ChangeProfileButton from "./components/changeProfile";
 import { userProfileInterface, postProfileInterface } from "@/app/interface/profile";
 import ProfilePost from "./components/profilePost";
 import FypCarousel from "@/app/components/postComponents/fyp";
+import { useState, useEffect } from "react";
+import useUserProfileStore from "@/app/store/userProfileStore";
 
 export default function Profile() {
 
     const myId = useUserStore((state) => state.getUserId)
+    const userProfile = useUserProfileStore((state) => state.userProfile)
+    const setUserProfile = useUserProfileStore((state) => state.setUserProfile)
 
+   
     const params = useParams()
 
     const { id } = params;
 
-    const { data } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey : ["profile"],
         queryFn : () => axios.get(`/profile/${id}`)
     })
 
-    const user: userProfileInterface = data?.data.user
-    const post: postProfileInterface[] = data?.data.post
+    let post: postProfileInterface[] = []
+    post = data?.data.post
+     
+    useEffect(() => {
+        if (data?.data) {
+            setUserProfile(data?.data.user);
+        }
+    }, [data, setUserProfile]);
+
+    if(isLoading) return <h1> loading....................... </h1>
+
 
     return(
         <div className="h-dvh w-full grid grid-cols-12  ">
@@ -40,33 +54,33 @@ export default function Profile() {
                     
                         <div className="w-32 h-32 shadow-lg rounded-full overflow-hidden mb-4 border-2 border-gray-200 m-auto">
                             <img
-                            src={user?.profile}
+                            src={userProfile.profile}
                             alt="Profile Picture"
                             className="w-full h-full object-cover"
                             />
                         </div>
                 
                     
-                        <h1 className="text-2xl font-bold mb-5  m-auto text-center"> {user?.fullname} </h1>
+                        <h1 className="text-2xl font-bold mb-5  m-auto text-center"> {userProfile.fullname} </h1>
                 
                         
                         <div className="flex space-x-10 mb-6 ">
                             <div className="flex flex-col items-center">
-                            <span className="font-bold text-2xl "> {user?.following.length} </span>
+                            <span className="font-bold text-2xl "> {userProfile.following.length} </span>
                             <span className="text-gray-500 text-md">Following</span>
                             </div>
                             <div className="flex flex-col items-center">
-                            <span className="font-bold text-2xl "> {user?.followers.length} </span>
+                            <span className="font-bold text-2xl "> {userProfile.followers.length} </span>
                             <span className="text-gray-500 text-md">Followers</span>
                             </div>
                             <div className="flex flex-col items-center">
-                            <span className="font-bold text-2xl "> {user?.likesCount} </span>
+                            <span className="font-bold text-2xl "> {userProfile.likesCount} </span>
                             <span className="text-gray-500 text-md">Likes</span>
                             </div>
                         </div>
 
                         <div className=" w-80 h-10">
-                            {(user?._id == myId()) ? <ChangeProfileButton/> : <FollowButton />}
+                            {(userProfile._id == myId()) ? <ChangeProfileButton/> : <FollowButton />}
                         </div>
 
                         <br />
