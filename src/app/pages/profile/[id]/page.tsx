@@ -1,7 +1,7 @@
 "use client"
 import useUserStore from "@/app/store/userStore"
-import { NavbarBottom } from "@/app/components/navbarBottom"
-import { NavbarSide } from "@/app/components/navbarSide"
+import { NavbarBottom } from "@/app/components/navbarComponents/navbarBottom"
+import { NavbarSide } from "@/app/components/navbarComponents/navbarSide"
 import { useParams } from "next/navigation";
 import axios from "@/app/hooks/api";
 import { useQuery } from "@tanstack/react-query";
@@ -9,7 +9,7 @@ import FollowButton from "./components/follow";
 import ChangeProfileButton from "./components/changeProfile";
 import { userProfileInterface, postProfileInterface } from "@/app/interface/profile";
 import ProfilePost from "./components/profilePost";
-
+import FypCarousel from "@/app/components/postComponents/fyp";
 
 export default function Profile() {
 
@@ -74,7 +74,7 @@ export default function Profile() {
                         <div className="bg-stone-900  w-full h-auto grid grid-cols-3 md:w-4/6">
                         {
                             post?.map((post, index) => {
-                                return <ProfilePost post={post} key={index} />
+                                return <ProfilePost post={post} key={index} index={index}/>
                             })
                         }
                         </div>
@@ -84,7 +84,9 @@ export default function Profile() {
                     </div>
                 </div>
              </div>
+            
 
+            
             <NavbarBottom />
         </div>
     )

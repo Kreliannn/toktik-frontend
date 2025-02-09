@@ -1,6 +1,7 @@
 import { postProfileInterface } from "@/app/interface/profile"
+import Link from "next/link";
 
-export default function ProfilePost({ post }: { post : postProfileInterface} )
+export default function ProfilePost({ post , index}: { post : postProfileInterface, index : number} )
 {
 
 
@@ -9,28 +10,28 @@ export default function ProfilePost({ post }: { post : postProfileInterface} )
     {
         case "image":
             return(
-                <div className="border border-black h-[200px] md:h-[400px]  flex justify-center place-items-center">
+                <Link href={`/pages/profilePost/${post.user}/${index}`} className="border border-black h-[200px] md:h-[400px]  flex justify-center place-items-center">
                     <img src={post.imgUrl} alt="" />
-                </div>
+                </Link>
             )
         break;
 
         case "video":
             return(
-                <div className="border border-black h-[200px] md:h-[400px] border border-black   flex justify-center place-items-center">
+                <Link href={`/pages/profilePost/${post.user}/${index}`} className="border border-black h-[200px] md:h-[400px] border border-black   flex justify-center place-items-center">
                     <video src={post.vidUrl} autoPlay muted loop></video>
-                </div>
+                </Link>
             )
         break;
 
 
         case "text":
             return(
-                <div className="border border-black h-[200px] md:h-[400px] flex jusitfy-center place-items-center">
+                <Link href={`/pages/profilePost/${post.user}/${index}`} className="border border-black h-[200px] md:h-[400px] flex jusitfy-center place-items-center">
                     <div className={`w-full h-24 overflow-hidden bg-white flex justify-center place-items-center`}>
                         <h1 className={` font-bold text-black text-xs text-center` }>  {post.postBody} </h1>
                     </div>
-                </div>
+                </Link>
             )
         break;
     }

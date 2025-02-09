@@ -1,9 +1,9 @@
 "use client"
 import Image from "next/image";
 import useUserStore from "@/app/store/userStore";
-import { NavbarBottom } from "@/app/components/navbarBottom";
-import { NavbarSide } from "@/app/components/navbarSide";
-import FypCarousel from "./components/fyp";
+import { NavbarBottom } from "@/app/components/navbarComponents/navbarBottom";
+import { NavbarSide } from "@/app/components/navbarComponents/navbarSide";
+import FypCarousel from "../../components/postComponents/fyp";
 
 export default function Fyp()
 {
@@ -22,7 +22,7 @@ export default function Fyp()
       <div className="bg-gray-900 col-span-12 md:col-span-9 ">
         
         <div className="w-full h-dvh bg-stone-900 flex justify-center place-items-center">
-          <FypCarousel />
+          <FypCarousel endPoint="/post" index={0}/>
         </div>
               
         <NavbarBottom />

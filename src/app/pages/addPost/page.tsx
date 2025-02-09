@@ -1,6 +1,6 @@
 "use client"
-import { NavbarSide } from "@/app/components/navbarSide"
-import { NavbarBottom } from "@/app/components/navbarBottom"
+import { NavbarSide } from "@/app/components/navbarComponents/navbarSide"
+import { NavbarBottom } from "@/app/components/navbarComponents/navbarBottom"
 import { Description } from "@mui/icons-material"
 import { useState } from "react"
 import ImageUpload from "./components/imageUpload"

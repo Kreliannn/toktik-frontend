@@ -1,7 +1,7 @@
 "use client"
 import { Home, Group, AddCircleOutline, Notifications, Person } from "@mui/icons-material"
 import { useRouter } from "next/navigation"
-import useUserStore from "../store/userStore"
+import useUserStore from "../../store/userStore"
 
 
 

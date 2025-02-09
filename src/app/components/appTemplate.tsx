@@ -1,5 +1,5 @@
-import { NavbarSide } from "@/app/components/navbarSide"
-import { NavbarBottom } from "@/app/components/navbarBottom"
+import { NavbarSide } from "@/app/components/navbarComponents/navbarSide"
+import { NavbarBottom } from "@/app/components/navbarComponents/navbarBottom"
 
 export default function Template()
 {

@@ -14,7 +14,7 @@ import { postInterface } from "@/app/interface/post";
 import CommentSection from "./commentSection";
 import { useState } from "react";
 
-export default function FypCarousel()
+export default function FypCarousel({ endPoint, index }: { endPoint : string, index : number})
 {
     const [ showcomment, setShowcomment ] = useState(false)
 
@@ -22,7 +22,7 @@ export default function FypCarousel()
 
     const { data } = useQuery({
       queryKey: ["fyp"],
-      queryFn : () => axios.get("/post")
+      queryFn : () => axios.get(endPoint)
     })
 
     const allPost: [] = data?.data
@@ -31,7 +31,7 @@ export default function FypCarousel()
 
     return (
     <div>
-         <Carousel axis="vertical" infiniteLoop showThumbs={false} showIndicators={false} showStatus={false} className="md:w-80 h-dvh w-full "> 
+         <Carousel axis="vertical" infiniteLoop showThumbs={false} showIndicators={false} selectedItem={index} showStatus={false} className="md:w-80 h-dvh w-full "> 
             {
               allPost?.map((post: postInterface, index) => {
                 return (

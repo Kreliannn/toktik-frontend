@@ -18,6 +18,10 @@ hide-scrollbar::-webkit-scrollbar {
   @apply px-4 py-2 bg-black text-white rounded-lg hover:bg-stone-900 transition duration-300 ease-in-out;
 }
 
+.button-white {
+  @apply px-4 py-2 bg-white text-black rounded-lg hover:bg-stone-300 transition duration-300 ease-in-out;
+}
+
 .card {
   @apply bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out;
 }
