@@ -25,12 +25,16 @@ export default function Profile() {
     const { id } = params;
 
     const { data, isLoading } = useQuery({
-        queryKey : ["profile"],
-        queryFn : () => axios.get(`/profile/${id}`)
+        queryKey : ["profile", id],
+        queryFn : () => axios.get(`/profile/${id}`),
+        staleTime: 0,
     })
 
     let post: postProfileInterface[] = []
     post = data?.data.post
+
+
+    
      
     useEffect(() => {
         if (data?.data) {
