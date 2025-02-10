@@ -10,7 +10,7 @@ import axios from '@/app/hooks/api';
 import { useMutation } from '@tanstack/react-query';
 import { addPostInterface } from '@/app/interface/post';
 import { Error } from '@/app/interface/onError';
-
+import { successAlert, errorAlert } from '@/app/hooks/alert';
 
 export default function ImageUpload()
 {
@@ -22,18 +22,18 @@ export default function ImageUpload()
         onSuccess : (response) =>{
             setCaption("")
             setFile({name: ""} as File)
-            alert(response.data)
+            successAlert(response.data)
         },
-        onError : (err: Error) => alert(err.response.data)
+        onError : (err: Error) => errorAlert(err.response.data)
     })
 
     const submit = async () => {
 
-       if(file.name == "") return alert("select image first")
+       if(file.name == "") return errorAlert("select image first")
         
        const value = await useUpload(file, "image")
 
-       if(value == "file type error") return alert("file type is not valid")
+       if(value == "file type error") return errorAlert("file type is not valid")
        
         mutation.mutate({
             value : value,

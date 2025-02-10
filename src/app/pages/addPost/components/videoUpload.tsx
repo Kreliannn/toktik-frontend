@@ -10,6 +10,8 @@ import { useMutation } from '@tanstack/react-query';
 import { addPostInterface } from '@/app/interface/post';
 import { Error } from '@/app/interface/onError';
 import useUpload from '@/app/hooks/upload';
+import { successAlert, errorAlert } from '@/app/hooks/alert';
+
 
 export default function VideoUpload()
 {
@@ -21,19 +23,19 @@ export default function VideoUpload()
         onSuccess : (response) =>{
             setCaption("")
             setFile({name: ""} as File)
-            alert(response.data)
+            successAlert(response.data)
         },
-        onError : (err: Error) => alert(err.response.data)
+        onError : (err: Error) => errorAlert(err.response.data)
     })
 
     const submit = async () => {
         
-        if(!file.name) alert("select video first")
+        if(!file.name) return errorAlert("select video first")
 
         const value = await useUpload(file, "video")
 
-        if(value == "file type error") return alert("file type is not valid")
-        if(value == "file size error") return alert("video upload must be 2 mins below")
+        if(value == "file type error") return errorAlert("file type is not valid")
+        if(value == "file size error") return errorAlert("video upload must be 2 mins below")
         
         mutation.mutate({ 
             caption : caption,

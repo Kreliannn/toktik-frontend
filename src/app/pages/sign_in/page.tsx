@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query"
 import { signInInterface } from "@/app/interface/account"
 import useUserStore from "@/app/store/userStore"
 import { useRouter } from "next/navigation"
-
+import { errorAlert } from "@/app/hooks/alert"
 
 export default function SignIn()
 {
@@ -27,7 +27,7 @@ export default function SignIn()
             setUser(response.data)
             router.push("/pages/fyp")
         },
-        onError : (err) => alert("user not found")
+        onError : (err) => errorAlert("user not found")
     })
 
 

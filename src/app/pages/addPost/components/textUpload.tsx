@@ -10,6 +10,8 @@ import axios from '@/app/hooks/api';
 import { useMutation } from '@tanstack/react-query';
 import { Error } from '@/app/interface/onError';
 import { addPostInterface } from '@/app/interface/post';
+import { successAlert, errorAlert } from '@/app/hooks/alert';
+
 
 export default function TextUpload()
 {
@@ -21,9 +23,9 @@ export default function TextUpload()
         onSuccess : (response) => {
             setCaption("")
             setPostBody("")
-            alert(response.data)
+            successAlert(response.data)
         },
-        onError : (err: Error) => alert(err.response.data)
+        onError : (err: Error) => errorAlert(err.response.data)
     })
 
     const submit = () => mutation.mutate({caption : caption, type : "text", value : postBody})

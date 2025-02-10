@@ -5,7 +5,8 @@ import axios from "@/app/hooks/api"
 import { useMutation } from "@tanstack/react-query"
 import { signUpInterface } from "@/app/interface/account"
 import { AxiosError } from "axios"
-
+import { successAlert, errorAlert } from '@/app/hooks/alert';
+import { Error } from "@/app/interface/onError"
 
 export default function SignUp()
 {
@@ -20,8 +21,8 @@ export default function SignUp()
 
     const mutation = useMutation({
         mutationFn : (data: signUpInterface) => axios.post("/sign_up", data),
-        onSuccess : (response) => alert(response.data),
-        onError : (err) => alert((err as AxiosError<{ msg : string}>).response?.data.msg ),
+        onSuccess : (response) => successAlert(response.data),
+        onError : (err : Error) => errorAlert(err.response.data),
     })
 
  
