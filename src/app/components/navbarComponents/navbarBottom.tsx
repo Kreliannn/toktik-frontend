@@ -10,7 +10,7 @@ export function NavbarBottom() {
 
   const navItems = [
     { icon: Home, label: "For You", page : "/pages/fyp" },
-    { icon: Group, label: "Following", page : "/pages/" },
+    { icon: Group, label: "Following", page : "/pages/following" },
     { icon: AddCircleOutline, label: "Add", page : "/pages/addPost" },
     { icon: Notifications, label: "Inbox", page : "/pages/notification" },
     { icon: Person, label: "Profile", page : `/pages/profile/${id()}` },
