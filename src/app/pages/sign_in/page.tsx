@@ -7,6 +7,7 @@ import { signInInterface } from "@/app/interface/account"
 import useUserStore from "@/app/store/userStore"
 import { useRouter } from "next/navigation"
 import { errorAlert } from "@/app/hooks/alert"
+import NavbarHome from "@/app/components/navbarComponents/navbarHome"
 
 export default function SignIn()
 {
@@ -33,11 +34,12 @@ export default function SignIn()
 
     
     return(
-        <div className="flex justify-center  place-items-center w-full h-dvh">
-            <div className="w-80  border drop-shadow-lg bg-gray-100 p-5">
+        <div className="flex justify-center  place-items-center w-full h-dvh bg-gradient-to-br from-gray-900 to-black rounded">
+            <NavbarHome />
+            <div className="w-80  border drop-shadow-lg bg-gray-200 p-5 rounded">
                 <h1 className="text-center text-2xl font-bold mb-3"> sign in </h1>
-                <TextField type="text"  label="username" variant="outlined" fullWidth className="mb-3" value={form.username} onChange={(e) => formSetter("username", e.target.value)} />
-                <TextField type="text"  label="password" variant="outlined" fullWidth className="mb-3" value={form.password} onChange={(e) => formSetter("password", e.target.value)} />
+                <TextField type="text"  label="username" variant="outlined" fullWidth sx={{ marginBottom : "10px" }} value={form.username} onChange={(e) => formSetter("username", e.target.value)} />
+                <TextField type="text"  label="password" variant="outlined" fullWidth sx={{ marginBottom : "10px" }} value={form.password} onChange={(e) => formSetter("password", e.target.value)} />
                 <Button variant="contained" fullWidth onClick={()=> mutation.mutate(form)}> sign in </Button>
             </div>
         </div>
