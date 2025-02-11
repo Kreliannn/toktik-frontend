@@ -1,35 +1,24 @@
+"use client"
+import Link from "next/link"
 import { NavbarSide } from "@/app/components/navbarComponents/navbarSide"
 import { NavbarBottom } from "@/app/components/navbarComponents/navbarBottom"
 import { Avatar, Button } from "@mui/material"
 import { Person, PersonAdd } from "@mui/icons-material"
+import axios from "@/app/hooks/api"
+import { useQuery } from "@tanstack/react-query"
 
-// Mock data for followers and following
-const followers = [
-  { id: 1, name: "Alice Johnson", image: "/placeholder.svg?height=40&width=40" },
-  { id: 2, name: "Bob Smith", image: "/placeholder.svg?height=40&width=40" },
-  { id: 3, name: "Charlie Brown", image: "/placeholder.svg?height=40&width=40" },
-  { id: 1, name: "Alice Johnson", image: "/placeholder.svg?height=40&width=40" },
-  { id: 2, name: "Bob Smith", image: "/placeholder.svg?height=40&width=40" },
-  { id: 3, name: "Charlie Brown", image: "/placeholder.svg?height=40&width=40" },
-  { id: 1, name: "Alice Johnson", image: "/placeholder.svg?height=40&width=40" },
-  { id: 2, name: "Bob Smith", image: "/placeholder.svg?height=40&width=40" },
-  { id: 3, name: "Charlie Brown", image: "/placeholder.svg?height=40&width=40" },
-  { id: 1, name: "Alice Johnson", image: "/placeholder.svg?height=40&width=40" },
-  { id: 2, name: "Bob Smith", image: "/placeholder.svg?height=40&width=40" },
-  { id: 3, name: "Charlie Brown", image: "/placeholder.svg?height=40&width=40" },
-  { id: 1, name: "Alice Johnson", image: "/placeholder.svg?height=40&width=40" },
-  { id: 2, name: "Bob Smith", image: "/placeholder.svg?height=40&width=40" },
-  { id: 3, name: "Charlie Brown", image: "/placeholder.svg?height=40&width=40" },
-]
 
-const following = [
-  { id: 4, name: "David Lee", image: "/placeholder.svg?height=40&width=40" },
-  { id: 5, name: "Eva Green", image: "/placeholder.svg?height=40&width=40" },
-  { id: 6, name: "Frank White", image: "/placeholder.svg?height=40&width=40" },
-]
-
-export default function FollowingPage()
+export default  function FollowingPage()
 {
+    const { data , isLoading } = useQuery({
+        queryKey : ["followings"],
+        queryFn : () => axios.get("/account/following")
+    })
+
+    const following = data?.data.following
+    const followers = data?.data.followers
+
+
     return(
         <div className="h-dvh w-full grid grid-cols-12  ">
 
@@ -43,32 +32,26 @@ export default function FollowingPage()
                     <div>
                     <h2 className="text-xl font-semibold mb-4">Followers</h2>
                     <ul className="space-y-4 overflow-auto h-96 ">
-                        {followers.map((user) => (
-                        <li key={user.id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow">
+                        {followers?.map((user) => (
+                        <Link href={`/pages/profile/${user?._id}`} key={user?._id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow">
                             <div className="flex items-center space-x-4">
-                            <Avatar src={user.image} alt={user.name} />
-                            <span className="font-medium">{user.name}</span>
+                            <Avatar src={user?.profile} alt={user?.fullname} />
+                            <span className="font-medium">{user?.fullname}</span>
                             </div>
-                            <Button variant="outlined" startIcon={<PersonAdd />}>
-                            Follow
-                            </Button>
-                        </li>
+                        </Link>
                         ))}
                     </ul>
                     </div>
                     <div>
                     <h2 className="text-xl font-semibold mb-4">Following</h2>
                     <ul className="space-y-4  overflow-auto h-96">
-                        {following.map((user) => (
-                        <li key={user.id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow">
+                        {following?.map((user) => (
+                        <Link href={`/pages/profile/${user?._id}`} key={user?._id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow">
                             <div className="flex items-center space-x-4">
-                            <Avatar src={user.image} alt={user.name} />
-                            <span className="font-medium">{user.name}</span>
+                            <Avatar src={user?.profile} alt={user?.fullname} />
+                            <span className="font-medium">{user?.fullname}</span>
                             </div>
-                            <Button variant="outlined" color="secondary" startIcon={<Person />}>
-                            Unfollow
-                            </Button>
-                        </li>
+                        </Link>
                         ))}
                     </ul>
                     </div>
