@@ -19,8 +19,9 @@ import LoadingPage from "../loading/loading";
 export default function FypCarousel({ endPoint, index }: { endPoint : string, index : number})
 {
     const [ showcomment, setShowcomment ] = useState(false)
-
+    const [indexState, setIndexState] = useState(0)
     const user = useUserStore((state) => state.user)
+
 
     const { data, isLoading } = useQuery({
       queryKey: ["fyp"],
@@ -33,7 +34,11 @@ export default function FypCarousel({ endPoint, index }: { endPoint : string, in
 
     return (
     <div>
-         <Carousel axis="vertical" emulateTouch={true} showArrows={false} infiniteLoop showThumbs={false} showIndicators={false} selectedItem={index} showStatus={false} className="md:w-80 h-dvh w-full "> 
+         <Carousel axis="vertical" emulateTouch={true} showArrows={false} infiniteLoop showThumbs={false} showIndicators={false} selectedItem={index} showStatus={false} className="md:w-80 h-dvh w-full "
+          onChange={(index :number) => {
+            setIndexState(index)
+          }}
+         > 
             {
               allPost?.map((post: postInterface, index) => {
                 return (
@@ -41,7 +46,7 @@ export default function FypCarousel({ endPoint, index }: { endPoint : string, in
                     <SideIcons postId={post._id} like={post.like} favorite={post.favorite} comment={post.comment} user={post.user} show={setShowcomment} />
                      <div className="h-dvh w-full bg-black flex place-items-center">
                         {(post.type == "image") ? <PostImage img={post.imgUrl} /> : ""}
-                        {(post.type == "video") ? <PostVideo vid={post.vidUrl} /> : ""}
+                        {(post.type == "video") ? <PostVideo vid={post.vidUrl} index={index} indexState={indexState} /> : ""}
                         {(post.type == "text") ? <PostText postBody={post.postBody} /> : ""}
                      </div>
                     {(showcomment) ? <CommentSection postId={post._id} comments={post.comment} hide={setShowcomment} /> : ""}

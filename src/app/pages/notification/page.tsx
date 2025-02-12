@@ -14,7 +14,7 @@ const NotificationPage = () => {
 
   const user = useUserStore((state) => state.user)
 
-  if(!user.fullname) return <ErrorPage />
+
 
     const { data, isLoading } = useQuery({
         queryKey : ["notif"],
@@ -24,7 +24,7 @@ const NotificationPage = () => {
 
 
     if(isLoading) return <LoadingPage />
-
+    if(!user.fullname) return <ErrorPage />
     const notifications: notificationInterface[] = data?.data
 
   return (
