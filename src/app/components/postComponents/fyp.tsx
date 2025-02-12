@@ -33,7 +33,7 @@ export default function FypCarousel({ endPoint, index }: { endPoint : string, in
 
     return (
     <div>
-         <Carousel axis="vertical" infiniteLoop showThumbs={false} showIndicators={false} selectedItem={index} showStatus={false} className="md:w-80 h-dvh w-full "> 
+         <Carousel axis="vertical" emulateTouch={true} showArrows={false} infiniteLoop showThumbs={false} showIndicators={false} selectedItem={index} showStatus={false} className="md:w-80 h-dvh w-full "> 
             {
               allPost?.map((post: postInterface, index) => {
                 return (
