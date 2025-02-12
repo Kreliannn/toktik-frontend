@@ -3,9 +3,11 @@ import { VisuallyHiddenInput } from '@/app/hooks/muiUploadButton';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CheckIcon from '@mui/icons-material/Check';
 import { useState } from 'react';
-import { askAlert } from '@/app/hooks/alert';
+import { askAlert, errorAlert } from '@/app/hooks/alert';
 import useUserProfileStore from '@/app/store/userProfileStore';
 import axios from '@/app/hooks/api';
+import useUpload from '@/app/hooks/upload';
+
 
 const submitToServer = async (fileUrl : string) => {
     await axios.post("/profile/change", { profileUrl : fileUrl})
@@ -19,10 +21,11 @@ export default function ChangeProfileButton()
 
     if(file.name != "")
     {
-        askAlert("change profile?", () => {
-            //const fileUrl = ""
-            //changeProfile(fileUrl)
-            submitToServer("test")
+        askAlert("change profile?", async () => {
+            const fileUrl = await useUpload(file, "image")
+            if(fileUrl == "file type error") errorAlert(fileUrl)
+            changeProfile(fileUrl)
+            submitToServer(fileUrl)
         })
         setFile({ name : "" }  as File)
     }
