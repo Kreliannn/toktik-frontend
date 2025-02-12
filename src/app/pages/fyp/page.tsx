@@ -4,13 +4,14 @@ import useUserStore from "@/app/store/userStore";
 import { NavbarBottom } from "@/app/components/navbarComponents/navbarBottom";
 import { NavbarSide } from "@/app/components/navbarComponents/navbarSide";
 import FypCarousel from "../../components/postComponents/fyp";
+import ErrorPage from "@/app/components/unAuthorize/errorPage";
 
 export default function Fyp()
 {
     
     const user = useUserStore((state) => state.user)
 
-    
+    if(!user.fullname) return <ErrorPage />
 
     return (
     <div className="h-dvh w-full grid grid-cols-12  ">

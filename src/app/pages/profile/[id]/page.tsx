@@ -12,10 +12,16 @@ import ProfilePost from "./components/profilePost";
 import FypCarousel from "@/app/components/postComponents/fyp";
 import { useState, useEffect, useRef } from "react";
 import useUserProfileStore from "@/app/store/userProfileStore";
+import { useRouter } from "next/navigation";
+import ErrorPage from "@/app/components/unAuthorize/errorPage";
+import LoadingPage from "@/app/components/loading/loading";
 
 export default function Profile() {
 
+    const router = useRouter()
+
     const myId = useUserStore((state) => state.getUserId)
+    const logOut = useUserStore((state) => state.userLogOut)
     const userProfile = useUserProfileStore((state) => state.userProfile)
     const setUserProfile = useUserProfileStore((state) => state.setUserProfile)
 
@@ -43,7 +49,12 @@ export default function Profile() {
         }
     }, [data, setUserProfile]);
 
-    if(isLoading) return <h1> loading....................... </h1>
+    if(isLoading) return <LoadingPage />
+    
+
+    if(!myId()) return <ErrorPage />
+
+    
 
 
     return(
@@ -105,7 +116,16 @@ export default function Profile() {
                 </div>
              </div>
             
-
+            <div className="absolute top-0 w-full h-14  flex justify-end">
+                <button className=" bg-black text-white input me-2 mt-2"
+                    onClick={() => {
+                        logOut()
+                        router.push("/")
+                    }}
+                >
+                    Logout
+                </button>
+            </div>
             
             <NavbarBottom />
         </div>

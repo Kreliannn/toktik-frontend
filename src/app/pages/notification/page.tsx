@@ -5,10 +5,16 @@ import { NavbarSide } from "@/app/components/navbarComponents/navbarSide"
 import axios from "@/app/hooks/api"
 import { useQuery } from "@tanstack/react-query"
 import { notificationInterface } from "@/app/interface/notification"
-
+import LoadingPage from "@/app/components/loading/loading"
+import useUserStore from "@/app/store/userStore"
+import ErrorPage from "@/app/components/unAuthorize/errorPage"
 
 
 const NotificationPage = () => {
+
+  const user = useUserStore((state) => state.user)
+
+  if(!user.fullname) return <ErrorPage />
 
     const { data, isLoading } = useQuery({
         queryKey : ["notif"],
@@ -17,7 +23,7 @@ const NotificationPage = () => {
     })
 
 
-    if(isLoading) return <h1> isLoading.valueOf............... </h1>
+    if(isLoading) return <LoadingPage />
 
     const notifications: notificationInterface[] = data?.data
 

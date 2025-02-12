@@ -6,10 +6,16 @@ import { Avatar, Button } from "@mui/material"
 import { Person, PersonAdd } from "@mui/icons-material"
 import axios from "@/app/hooks/api"
 import { useQuery } from "@tanstack/react-query"
-
+import useUserStore from "@/app/store/userStore"
+import ErrorPage from "@/app/components/unAuthorize/errorPage"
 
 export default  function FollowingPage()
 {
+    
+    const user = useUserStore((state) => state.user)
+
+    if(!user.fullname) return <ErrorPage />
+
     const { data , isLoading } = useQuery({
         queryKey : ["followings"],
         queryFn : () => axios.get("/account/following")

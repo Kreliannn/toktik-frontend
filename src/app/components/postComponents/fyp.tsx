@@ -13,6 +13,8 @@ import { combine } from "zustand/middleware";
 import { postInterface } from "@/app/interface/post";
 import CommentSection from "./commentSection";
 import { useState } from "react";
+import LoadingPage from "../loading/loading";
+
 
 export default function FypCarousel({ endPoint, index }: { endPoint : string, index : number})
 {
@@ -20,14 +22,14 @@ export default function FypCarousel({ endPoint, index }: { endPoint : string, in
 
     const user = useUserStore((state) => state.user)
 
-    const { data } = useQuery({
+    const { data, isLoading } = useQuery({
       queryKey: ["fyp"],
       queryFn : () => axios.get(endPoint)
     })
 
     const allPost: [] = data?.data
 
-  
+    if(isLoading) return <LoadingPage />
 
     return (
     <div>

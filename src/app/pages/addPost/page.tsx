@@ -6,6 +6,8 @@ import { useState } from "react"
 import ImageUpload from "./components/imageUpload"
 import VideoUpload from "./components/videoUpload"
 import TextUpload from "./components/textUpload"
+import useUserStore from "@/app/store/userStore"
+import ErrorPage from "@/app/components/unAuthorize/errorPage"
 
 const choices = [
     { type : "image", Description : "bla bla lba", title : "Image upload"},
@@ -16,7 +18,10 @@ const choices = [
 export default function AddPost()
 {
     const [type, setType] = useState("")
+    
+    const user = useUserStore((state) => state.user)
 
+    if(!user.fullname) return <ErrorPage />
 
     return(
         <div className="h-dvh w-full grid grid-cols-12  ">

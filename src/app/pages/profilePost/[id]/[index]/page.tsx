@@ -6,6 +6,7 @@ import { NavbarSide } from "@/app/components/navbarComponents/navbarSide";
 import FypCarousel from "@/app/components/postComponents/fyp";
 import { useParams, useRouter } from "next/navigation";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ErrorPage from "@/app/components/unAuthorize/errorPage";
 
 
 export default function Fyp()
@@ -15,6 +16,8 @@ export default function Fyp()
     const router = useRouter()
 
     const user = useUserStore((state) => state.user)
+
+    if(!user.fullname) return <ErrorPage />
     
 
     return (
