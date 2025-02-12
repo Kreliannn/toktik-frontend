@@ -37,7 +37,7 @@ export default function FypCarousel({ endPoint, index }: { endPoint : string, in
             {
               allPost?.map((post: postInterface, index) => {
                 return (
-                  <div key={index} className="w-screen md:w-full"> 
+                  <div key={index} className="w-screen md:w-full relative"> 
                     <SideIcons postId={post._id} like={post.like} favorite={post.favorite} comment={post.comment} user={post.user} show={setShowcomment} />
                      <div className="h-dvh w-full bg-black flex place-items-center">
                         {(post.type == "image") ? <PostImage img={post.imgUrl} /> : ""}
@@ -45,6 +45,12 @@ export default function FypCarousel({ endPoint, index }: { endPoint : string, in
                         {(post.type == "text") ? <PostText postBody={post.postBody} /> : ""}
                      </div>
                     {(showcomment) ? <CommentSection postId={post._id} comments={post.comment} hide={setShowcomment} /> : ""}
+                    
+                    <div className="absolute bottom-14 md:bottom-0 left-0 w-full h-24 overflow-hidden text-white text-start leading-8 ">
+                      <b className="bg-gray-900 opacity-[.5] p-2 rounded text-sm ms-1"> {post.user.fullname} </b> <br />
+                      {(post.caption)? <span className="bg-gray-900 opacity-[.5] p-2 rounded text-xs ms-1 mt-5"> {post.caption} </span> : ""}
+                    </div>
+
                   </div>
                 )
               })
