@@ -10,7 +10,7 @@ import ChangeProfileButton from "./components/changeProfile";
 import { userProfileInterface, postProfileInterface } from "@/app/interface/profile";
 import ProfilePost from "./components/profilePost";
 import FypCarousel from "@/app/components/postComponents/fyp";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useUserProfileStore from "@/app/store/userProfileStore";
 
 export default function Profile() {
@@ -19,6 +19,7 @@ export default function Profile() {
     const userProfile = useUserProfileStore((state) => state.userProfile)
     const setUserProfile = useUserProfileStore((state) => state.setUserProfile)
 
+    const profilePic = useRef(null)
    
     const params = useParams()
 
@@ -58,6 +59,7 @@ export default function Profile() {
                     
                         <div className="w-32 h-32 shadow-lg rounded-full overflow-hidden mb-4 border-2 border-gray-200 m-auto">
                             <img
+                            ref={profilePic}
                             src={userProfile.profile}
                             alt="Profile Picture"
                             className="w-full h-full object-cover"

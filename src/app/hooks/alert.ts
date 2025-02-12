@@ -19,3 +19,20 @@ export const errorAlert = (msg : string) => {
         confirmButtonColor: '#000000'
       });
 }
+
+
+export const askAlert = (msg : string, callBack : () => void) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: msg,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "black",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "yes"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      callBack()
+    }
+  });
+}

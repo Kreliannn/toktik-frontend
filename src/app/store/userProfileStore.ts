@@ -15,6 +15,7 @@ interface userProfileInterfaceZustand {
     setUserProfile : (data : userProfileInterface) => void,
     removeFollow : (id : string) => void, 
     addFollow : (id : string) => void, 
+    changeProfile : (url : string) => void 
 }
 
 const useUserProfileStore = create<userProfileInterfaceZustand>((set, get) => ({
@@ -31,7 +32,8 @@ const useUserProfileStore = create<userProfileInterfaceZustand>((set, get) => ({
         const addFollower = [...follower, id]
         console.log(addFollower)
         set((state) => ({ userProfile : {...state.userProfile, followers : addFollower}}))
-    }
+    },
+    changeProfile : (url) => set((state) => ({ userProfile : { ...state.userProfile, profile : url }}))
 }))
 
 

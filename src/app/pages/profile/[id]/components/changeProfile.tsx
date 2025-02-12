@@ -3,10 +3,29 @@ import { VisuallyHiddenInput } from '@/app/hooks/muiUploadButton';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CheckIcon from '@mui/icons-material/Check';
 import { useState } from 'react';
+import { askAlert } from '@/app/hooks/alert';
+import useUserProfileStore from '@/app/store/userProfileStore';
+import axios from '@/app/hooks/api';
+
+const submitToServer = async (fileUrl : string) => {
+    await axios.post("/profile/change", { profileUrl : fileUrl})
+}
 
 export default function ChangeProfileButton()
 {
     const [file, setFile] = useState<File>({ name : "" } as File)
+
+    const changeProfile = useUserProfileStore((state) => state.changeProfile)
+
+    if(file.name != "")
+    {
+        askAlert("change profile?", () => {
+            //const fileUrl = ""
+            //changeProfile(fileUrl)
+            submitToServer("test")
+        })
+        setFile({ name : "" }  as File)
+    }
 
     return(
         <div className='flex  '>
