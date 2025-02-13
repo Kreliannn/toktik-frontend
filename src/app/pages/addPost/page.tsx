@@ -8,6 +8,7 @@ import VideoUpload from "./components/videoUpload"
 import TextUpload from "./components/textUpload"
 import useUserStore from "@/app/store/userStore"
 import ErrorPage from "@/app/components/unAuthorize/errorPage"
+import LoadingPage from "@/app/components/loading/loading"
 
 const choices = [
     { type : "image", Description : "bla bla lba", title : "Image upload"},
@@ -21,7 +22,7 @@ export default function AddPost()
     
     const user = useUserStore((state) => state.user)
 
-    if(!user.fullname) return <ErrorPage />
+    if(!user.fullname) return <LoadingPage />
 
     return(
         <div className="h-dvh w-full grid grid-cols-12  ">

@@ -52,7 +52,7 @@ export default function Profile() {
     if(isLoading) return <LoadingPage />
     
 
-    if(!myId()) return <ErrorPage />
+    if(!myId()) return <LoadingPage />
 
     
 

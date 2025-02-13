@@ -24,7 +24,7 @@ const NotificationPage = () => {
 
 
     if(isLoading) return <LoadingPage />
-    if(!user.fullname) return <ErrorPage />
+    if(!user.fullname) return <LoadingPage />
     const notifications: notificationInterface[] = data?.data
 
   return (
