@@ -1,33 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📱 TikTok Clone  
 
-## Getting Started
+A responsive social media platform where users can create accounts, post images, videos, and text, like, comment, and bookmark posts. Users can follow/unfollow, track followers, update profiles, and receive real-time notifications for interactions.
 
-First, run the development server:
+## ✨ Features  
+- **User Authentication** – Sign up, log in, and manage profiles.  
+- **Content Posting** – Upload images, videos, and text posts.  
+- **Engagement** – Like, comment, and add posts to favorites.  
+- **Social Features** – Follow/unfollow users and view followers/following lists.  
+- **Notifications** – Get notified when someone interacts with your posts or follows you.  
+- **Profile Customization** – Change profile pictures and track engagement.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📸 Preview  
+![Image](https://github.com/user-attachments/assets/52c74bf2-d22a-4650-b941-3041f9b9c014)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![Image](https://github.com/user-attachments/assets/c8f96b2a-ee8b-4899-a248-8a57988c5d8c)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![Image](https://github.com/user-attachments/assets/bd6ddeb5-92ae-4ca9-b532-6c6df4020cb9)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+![Image](https://github.com/user-attachments/assets/e61b57a1-60fc-471a-b046-42a9f1c1589c)
 
-## Learn More
+![Image](https://github.com/user-attachments/assets/df38364f-fc17-4158-a4b3-220085ed3c2f)
 
-To learn more about Next.js, take a look at the following resources:
+![Image](https://github.com/user-attachments/assets/0fe72667-cbfd-4409-a8ff-503cd34f9b51)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Image](https://github.com/user-attachments/assets/58a8190c-fbd2-4836-8138-996770800fc6)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+![Image](https://github.com/user-attachments/assets/d516e686-3d29-4f2e-89e6-41c2553dce0d)
+
+![Image](https://github.com/user-attachments/assets/705a714c-9a1a-4a06-9199-f360bfaa51bd)
+
+![Image](https://github.com/user-attachments/assets/fb53a9e3-597b-455e-a2f3-0e9d44db28a7)
+
+![Image](https://github.com/user-attachments/assets/f1df2fd8-a6d3-4b59-b3f0-1132e52e292c)
+
+![Image](https://github.com/user-attachments/assets/054f0d0f-41d4-4913-bab9-833309da5700)
+
+![Image](https://github.com/user-attachments/assets/47c27ea7-ae9c-4fdf-ad62-1df082119b9c)
 
 ## Deploy on Vercel
 
